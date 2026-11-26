@@ -1,0 +1,251 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" width="1000" height="700">
+  <defs>
+    <linearGradient id="probeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#16213e;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="hostGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f0f23;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1a2e;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="usbGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00d4aa;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#0066ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00d4aa;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.3"/>
+    </filter>
+    <filter id="glowGreen" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#00d4aa"/>
+    </marker>
+    <marker id="arrowheadRev" markerWidth="10" markerHeight="7" refX="1" refY="3.5" orient="auto">
+      <polygon points="0 3.5, 10 0, 10 7" fill="#0066ff"/>
+    </marker>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1000" height="700" fill="#0a0a15"/>
+  
+  <!-- Grid pattern -->
+  <g opacity="0.03">
+    <pattern id="grid" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse">
+      <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#00d4aa" stroke-width="0.5"/>
+    </pattern>
+    <rect width="1000" height="700" fill="url(#grid)"/>
+  </g>
+  
+  <!-- Title -->
+  <text x="500" y="40" font-family="Orbitron, sans-serif" font-size="28" font-weight="700" 
+        fill="#00d4aa" text-anchor="middle" letter-spacing="2">
+    EXMACHINA SYSTEM ARCHITECTURE
+  </text>
+  
+  <!-- SMART BENCH PROBE (Left) -->
+  <g transform="translate(50, 80)">
+    <!-- Probe enclosure -->
+    <rect x="0" y="0" width="380" height="580" rx="16" fill="url(#probeGrad)" stroke="#00d4aa" stroke-width="2" filter="url(#shadow)"/>
+    
+    <!-- Probe header -->
+    <rect x="0" y="0" width="380" height="60" rx="16" fill="#00d4aa" opacity="0.1"/>
+    <text x="190" y="38" font-family="Orbitron, sans-serif" font-size="20" font-weight="700" 
+          fill="#00d4aa" text-anchor="middle">
+      🔬 SMART BENCH PROBE
+    </text>
+    <text x="190" y="56" font-family="Rajdhani, sans-serif" font-size="12" fill="#888" text-anchor="middle">
+      Raspberry Pi Pico 2 W  •  RP2350A Cortex-M33  •  150 MHz  •  520 KB SRAM
+    </text>
+    
+    <!-- Peripherals -->
+    <g transform="translate(20, 90)">
+      <!-- I2C -->
+      <rect x="0" y="0" width="160" height="120" rx="8" fill="#16213e" stroke="#00d4aa" stroke-width="1" opacity="0.8"/>
+      <text x="80" y="25" font-family="Orbitron, sans-serif" font-size="14" font-weight="700" fill="#00d4aa" text-anchor="middle">I2C0 (GP0/GP1)</text>
+      <text x="80" y="50" font-family="Rajdhani, sans-serif" font-size="11" fill="#aaa" text-anchor="middle">Bus Scanner 0x08–0x77</text>
+      <text x="80" y="70" font-family="Rajdhani, sans-serif" font-size="11" fill="#aaa" text-anchor="middle">WHO_AM_I: 0x0F, 0x75, 0xD0</text>
+      <text x="80" y="95" font-family="Rajdhani, sans-serif" font-size="10" fill="#00d4aa" text-anchor="middle">3.3V • 400 kHz</text>
+    </g>
+    
+    <g transform="translate(200, 90)">
+      <!-- ADC0 -->
+      <rect x="0" y="0" width="160" height="120" rx="8" fill="#16213e" stroke="#ff6b6b" stroke-width="1" opacity="0.8"/>
+      <text x="80" y="25" font-family="Orbitron, sans-serif" font-size="14" font-weight="700" fill="#ff6b6b" text-anchor="middle">ADC0 (GP26)</text>
+      <text x="80" y="50" font-family="Rajdhani, sans-serif" font-size="11" fill="#aaa" text-anchor="middle">Rail Voltage Probe</text>
+      <text x="80" y="70" font-family="Rajdhani, sans-serif" font-size="11" fill="#aaa" text-anchor="middle">10:1 Divider • 256 samples</text>
+      <text x="80" y="95" font-family="Rajdhani, sans-serif" font-size="10" fill="#ff6b6b" text-anchor="middle">0–30V • Ripple Analysis</text>
+    </g>
+    
+    <g transform="translate(20, 230)">
+      <!-- ADC1 -->
+      <rect x="0" y="0" width="160" height="120" rx="8" fill="#16213e" stroke="#ffd93d" stroke-width="1" opacity="0.8"/>
+      <text x="80" y="25" font-family="Orbitron, sans-serif" font-size="14" font-weight="700" fill="#ffd93d" text-anchor="middle">ADC1 (GP27)</text>
+      <text x="80" y="50" font-family="Rajdhani, sans-serif" font-size="11" fill="#aaa" text-anchor="middle">Continuity Probe</text>
+      <text x="80" y="70" font-family="Rajdhani, sans-serif" font-size="11" fill="#aaa" text-anchor="middle">1kΩ Pull-up • 3.3V Ref</text>
+      <text x="80" y="95" font-family="Rajdhani, sans-serif" font-size="10" fill="#ffd93d" text-anchor="middle">R / Diode / Short</text>
+    </g>
+    
+    <g transform="translate(200, 230)">
+      <!-- I2S Mic -->
+      <rect x="0" y="0" width="160" height="120" rx="8" fill="#16213e" stroke="#0066ff" stroke-width="1" opacity="0.8"/>
+      <text x="80" y="25" font-family="Orbitron, sans-serif" font-size="14" font-weight="700" fill="#0066ff" text-anchor="middle">I2S MEMS Mic</text>
+      <text x="80" y="50" font-family="Rajdhani, sans-serif" font-size="11" fill="#aaa" text-anchor="middle">KWS Pipeline (DS-CNN)</text>
+      <text x="80" y="70" font-family="Rajdhani, sans-serif" font-size="11" fill="#aaa" text-anchor="middle">16 kHz • 16-bit • INT8</text>
+      <text x="80" y="95" font-family="Rajdhani, sans-serif" font-size="10" fill="#0066ff" text-anchor="middle">Arm CMSIS-DSP</text>
+    </g>
+    
+    <g transform="translate(20, 370)">
+      <!-- USB CDC -->
+      <rect x="0" y="0" width="160" height="120" rx="8" fill="#16213e" stroke="#00d4aa" stroke-width="2" opacity="0.9"/>
+      <text x="80" y="25" font-family="Orbitron, sans-serif" font-size="14" font-weight="700" fill="#00d4aa" text-anchor="middle">USB CDC-ACM</text>
+      <text x="80" y="50" font-family="Rajdhani, sans-serif" font-size="11" fill="#aaa" text-anchor="middle">921600 baud</text>
+      <text x="80" y="70" font-family="Rajdhani, sans-serif" font-size="11" fill="#aaa" text-anchor="middle">Raw Binary + HID</text>
+      <text x="80" y="95" font-family="Rajdhani, sans-serif" font-size="10" fill="#00d4aa" text-anchor="middle">HMAC-Signed Packets</text>
+    </g>
+    
+    <g transform="translate(200, 370)">
+      <!-- Status LED -->
+      <rect x="0" y="0" width="160" height="120" rx="8" fill="#16213e" stroke="#ff6b6b" stroke-width="1" opacity="0.8"/>
+      <text x="80" y="25" font-family="Orbitron, sans-serif" font-size="14" font-weight="700" fill="#ff6b6b" text-anchor="middle">WL_GPIO0 LED</text>
+      <text x="80" y="50" font-family="Rajdhani, sans-serif" font-size="11" fill="#aaa" text-anchor="middle">Heartbeat Indicator</text>
+      <text x="80" y="70" font-family="Rajdhani, sans-serif" font-size="11" fill="#aaa" text-anchor="middle">Watchdog Timeout >2s</text>
+      <text x="80" y="95" font-family="Rajdhani, sans-serif" font-size="10" fill="#ff6b6b" text-anchor="middle">Rapid Blink = Host Down</text>
+    </g>
+    
+    <!-- Firmware badge -->
+    <g transform="translate(20, 510)">
+      <rect x="0" y="0" width="340" height="50" rx="8" fill="#00d4aa" opacity="0.15" stroke="#00d4aa" stroke-width="1"/>
+      <text x="170" y="32" font-family="Rajdhani, sans-serif" font-size="13" fill="#00d4aa" text-anchor="middle">
+        Zephyr RTOS  •  HMAC-SHA256 Intent Signing  •  500ms Heartbeat  •  Watchdog
+      </text>
+    </g>
+  </g>
+  
+  <!-- USB Connection (Center) -->
+  <g transform="translate(450, 320)">
+    <!-- Animated USB cable -->
+    <path d="M 0,0 Q 50,-30 100,0 Q 50,30 0,0" fill="none" stroke="url(#usbGrad)" stroke-width="6" stroke-linecap="round" marker-end="url(#arrowhead)" marker-start="url(#arrowheadRev)">
+      <animate attributeName="stroke-dashoffset" from="0" to="100" dur="2s" repeatCount="indefinite"/>
+    </path>
+    <text x="50" y="-50" font-family="Orbitron, sans-serif" font-size="14" font-weight="700" fill="#00d4aa" text-anchor="middle">
+      USB CDC-ACM
+    </text>
+    <text x="50" y="-35" font-family="Rajdhani, sans-serif" font-size="11" fill="#888" text-anchor="middle">
+      921600 baud  •  Encrypted  •  HMAC-Signed
+    </text>
+    <text x="50" y="-20" font-family="Rajdhani, sans-serif" font-size="11" fill="#888" text-anchor="middle">
+      PKT_AUDIO_FRAME  •  PKT_PROBE_INTENT  •  PKT_HEARTBEAT
+    </text>
+  </g>
+  
+  <!-- LINUX HOST BRAIN (Right) -->
+  <g transform="translate(570, 80)">
+    <!-- Host enclosure -->
+    <rect x="0" y="0" width="380" height="580" rx="16" fill="url(#hostGrad)" stroke="#0066ff" stroke-width="2" filter="url(#shadow)"/>
+    
+    <!-- Host header -->
+    <rect x="0" y="0" width="380" height="60" rx="16" fill="#0066ff" opacity="0.1"/>
+    <text x="190" y="38" font-family="Orbitron, sans-serif" font-size="20" font-weight="700" 
+          fill="#0066ff" text-anchor="middle">
+      🧠 LINUX HOST BRAIN
+    </text>
+    <text x="190" y="56" font-family="Rajdhani, sans-serif" font-size="12" fill="#888" text-anchor="middle">
+      NVIDIA RTX 3050 6 GB  •  sm_86  •  Linux  •  CUDA 12.x
+    </text>
+    
+    <!-- VRAM Budget -->
+    <g transform="translate(20, 90)">
+      <rect x="0" y="0" width="340" height="120" rx="8" fill="#0f0f23" stroke="#0066ff" stroke-width="1" opacity="0.9"/>
+      <text x="170" y="25" font-family="Orbitron, sans-serif" font-size="14" font-weight="700" fill="#0066ff" text-anchor="middle">VRAM BUDGET (6144 MB)</text>
+      
+      <!-- VRAM bars -->
+      <g transform="translate(20, 40)">
+        <!-- Arena -->
+        <rect x="0" y="0" width="260" height="16" rx="4" fill="#1a1a2e" stroke="#333" stroke-width="0.5"/>
+        <rect x="0" y="0" width="2.6" height="16" rx="4" fill="#00d4aa"/>
+        <text x="130" y="12" font-family="Rajdhani, sans-serif" font-size="10" fill="#fff" text-anchor="middle">Arena: 64 MB</text>
+      </g>
+      <g transform="translate(20, 65)">
+        <!-- LLM -->
+        <rect x="0" y="0" width="260" height="16" rx="4" fill="#1a1a2e" stroke="#333" stroke-width="0.5"/>
+        <rect x="0" y="0" width="142" height="16" rx="4" fill="#0066ff"/>
+        <text x="130" y="12" font-family="Rajdhani, sans-serif" font-size="10" fill="#fff" text-anchor="middle">LLM (7B IQ3_M): ~3.5 GB</text>
+      </g>
+      <g transform="translate(20, 90)">
+        <!-- KV Cache -->
+        <rect x="0" y="0" width="260" height="16" rx="4" fill="#1a1a2e" stroke="#333" stroke-width="0.5"/>
+        <rect x="0" y="0" width="20" height="16" rx="4" fill="#ffd93d"/>
+        <text x="130" y="12" font-family="Rajdhani, sans-serif" font-size="10" fill="#fff" text-anchor="middle">KV Cache (Q8_0): ~500 MB</text>
+      </g>
+    </g>
+    
+    <!-- Software Stack -->
+    <g transform="translate(20, 230)">
+      <rect x="0" y="0" width="340" height="330" rx="8" fill="#0f0f23" stroke="#0066ff" stroke-width="1" opacity="0.9"/>
+      <text x="170" y="25" font-family="Orbitron, sans-serif" font-size="14" font-weight="700" fill="#0066ff" text-anchor="middle">SOFTWARE STACK</text>
+      
+      <g transform="translate(20, 40)">
+        <!-- exmd Daemon -->
+        <rect x="0" y="0" width="300" height="50" rx="6" fill="#1a1a2e" stroke="#0066ff" stroke-width="1" opacity="0.8"/>
+        <text x="150" y="32" font-family="Rajdhani, sans-serif" font-size="13" fill="#0066ff" text-anchor="middle">🔄 exmd Daemon  •  epoll + timerfd  •  HMAC Gate  •  Compiler Sandbox</text>
+      </g>
+      
+      <g transform="translate(20, 100)">
+        <!-- CUDA Kernels -->
+        <rect x="0" y="0" width="140" height="80" rx="6" fill="#1a1a2e" stroke="#00d4aa" stroke-width="1" opacity="0.8"/>
+        <text x="70" y="22" font-family="Orbitron, sans-serif" font-size="11" font-weight="700" fill="#00d4aa" text-anchor="middle">Cosine Sim</text>
+        <text x="70" y="40" font-family="Rajdhani, sans-serif" font-size="10" fill="#aaa" text-anchor="middle">Warp-Shuffle</text>
+        <text x="70" y="55" font-family="Rajdhani, sans-serif" font-size="10" fill="#aaa" text-anchor="middle">384-dim</text>
+        <text x="70" y="70" font-family="Rajdhani, sans-serif" font-size="9" fill="#00d4aa" text-anchor="middle"><0.1 ms @10k</text>
+      </g>
+      
+      <g transform="translate(180, 100)">
+        <rect x="0" y="0" width="140" height="80" rx="6" fill="#1a1a2e" stroke="#ff6b6b" stroke-width="1" opacity="0.8"/>
+        <text x="70" y="22" font-family="Orbitron, sans-serif" font-size="11" font-weight="700" fill="#ff6b6b" text-anchor="middle">RRF + Top-K</text>
+        <text x="70" y="40" font-family="Rajdhani, sans-serif" font-size="10" fill="#aaa" text-anchor="middle">Rank Fusion</text>
+        <text x="70" y="55" font-family="Rajdhani, sans-serif" font-size="10" fill="#aaa" text-anchor="middle">1/(60+r)</text>
+        <text x="70" y="70" font-family="Rajdhani, sans-serif" font-size="9" fill="#ff6b6b" text-anchor="middle"><5 ms @10k</text>
+      </g>
+      
+      <g transform="translate(20, 190)">
+        <rect x="0" y="0" width="140" height="50" rx="6" fill="#1a1a2e" stroke="#ffd93d" stroke-width="1" opacity="0.8"/>
+        <text x="70" y="32" font-family="Orbitron, sans-serif" font-size="11" font-weight="700" fill="#ffd93d" text-anchor="middle">Arena Alloc</text>
+        <text x="70" y="45" font-family="Rajdhani, sans-serif" font-size="9" fill="#aaa" text-anchor="middle">64 MB • 256B align</text>
+      </g>
+      
+      <g transform="translate(180, 190)">
+        <rect x="0" y="0" width="140" height="50" rx="6" fill="#1a1a2e" stroke="#0066ff" stroke-width="1" opacity="0.8"/>
+        <text x="70" y="32" font-family="Orbitron, sans-serif" font-size="11" font-weight="700" fill="#0066ff" text-anchor="middle">llama-server</text>
+        <text x="70" y="45" font-family="Rajdhani, sans-serif" font-size="9" fill="#aaa" text-anchor="middle">7B/8B • IQ3_M</text>
+      </g>
+      
+      <g transform="translate(20, 255)">
+        <rect x="0" y="0" width="300" height="50" rx="6" fill="#1a1a2e" stroke="#00d4aa" stroke-width="1" opacity="0.8"/>
+        <text x="150" y="32" font-family="Rajdhani, sans-serif" font-size="13" fill="#00d4aa" text-anchor="middle">📚 Structural Indexer  •  AST Parser  •  BM25  •  Feature Hash (384-d)</text>
+      </g>
+    </g>
+    
+    <!-- Security badge -->
+    <g transform="translate(20, 510)">
+      <rect x="0" y="0" width="340" height="50" rx="8" fill="#ff6b6b" opacity="0.15" stroke="#ff6b6b" stroke-width="1"/>
+      <text x="170" y="32" font-family="Rajdhani, sans-serif" font-size="13" fill="#ff6b6b" text-anchor="middle">
+        🛡️ OUT-OF-BAND HMAC GATE  •  Constant-Time Verify  •  Replay Protection  •  Sandbox Compile
+      </text>
+    </g>
+  </g>
+  
+  <!-- Security Flow Annotation -->
+  <g transform="translate(50, 670)">
+    <rect x="0" y="0" width="900" height="24" rx="6" fill="#1a1a2e" stroke="#ff6b6b" stroke-width="1" opacity="0.5"/>
+    <text x="450" y="16" font-family="Rajdhani, sans-serif" font-size="12" fill="#ff6b6b" text-anchor="middle">
+      SECURITY FLOW: Host receives PKT_PROBE_INTENT → Verifies HMAC-SHA256 (const-time) → Checks seq_num > last_valid → 
+      If sandbox compile passes → Applies patch → Streams to llama-server (GBNF grammar) → Returns unified diff
+    </text>
+  </g>
+</svg>

@@ -1,0 +1,243 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" width="1000" height="600">
+  <defs>
+    <linearGradient id="picoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d1b2a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1b263b;stop-opacity:1" />
+    </linearGradient>
+    <filter id="pinGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <pattern id="pcbPattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+      <rect width="20" height="20" fill="#0d1b2a"/>
+      <circle cx="10" cy="10" r="0.8" fill="#00d4aa" opacity="0.3"/>
+    </pattern>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1000" height="600" fill="#050a10"/>
+  
+  <!-- PCB texture -->
+  <rect width="1000" height="600" fill="url(#pcbPattern)" opacity="0.3"/>
+  
+  <!-- Title -->
+  <text x="500" y="35" font-family="Orbitron, sans-serif" font-size="26" font-weight="700" 
+        fill="#00d4aa" text-anchor="middle" letter-spacing="2">
+    RASPBERRY PI PICO 2 W PINOUT — EXMACHINA PROBE
+  </text>
+  
+  <!-- Pico 2 W Board Outline -->
+  <g transform="translate(200, 70)">
+    <!-- Main PCB -->
+    <rect x="0" y="0" width="600" height="420" rx="12" fill="url(#picoGrad)" stroke="#00d4aa" stroke-width="2"/>
+    
+    <!-- USB Port -->
+    <rect x="285" y="-8" width="30" height="12" rx="2" fill="#1a1a2e" stroke="#00d4aa" stroke-width="1"/>
+    <text x="300" y="-14" font-family="Orbitron, sans-serif" font-size="9" fill="#00d4aa" text-anchor="middle">USB-C</text>
+    
+    <!-- BOOTSEL Button -->
+    <circle cx="580" cy="20" r="8" fill="#1a1a2e" stroke="#ff6b6b" stroke-width="1"/>
+    <text x="580" y="38" font-family="Rajdhani, sans-serif" font-size="8" fill="#ff6b6b" text-anchor="middle">BOOTSEL</text>
+    
+    <!-- LED -->
+    <circle cx="580" cy="400" r="5" fill="#00d4aa" filter="url(#pinGlow)"/>
+    <text x="580" y="418" font-family="Rajdhani, sans-serif" font-size="8" fill="#00d4aa" text-anchor="middle">GP25</text>
+    
+    <!-- RP2350A Chip -->
+    <rect x="240" y="160" width="120" height="100" rx="4" fill="#1a1a2e" stroke="#0066ff" stroke-width="2"/>
+    <text x="300" y="190" font-family="Orbitron, sans-serif" font-size="11" font-weight="700" fill="#0066ff" text-anchor="middle">RP2350A</text>
+    <text x="300" y="210" font-family="Rajdhani, sans-serif" font-size="9" fill="#888" text-anchor="middle">Cortex-M33 Dual Core</text>
+    <text x="300" y="228" font-family="Rajdhani, sans-serif" font-size="9" fill="#888" text-anchor="middle">150 MHz • 520 KB SRAM</text>
+    <text x="300" y="246" font-family="Rajdhani, sans-serif" font-size="8" fill="#00d4aa" text-anchor="middle">2× ARM M33 + 2× RISC-V</text>
+    
+    <!-- WL_GPIO0 (Wireless LED) -->
+    <circle cx="580" cy="380" r="5" fill="#0066ff" filter="url(#pinGlow)"/>
+    <text x="580" y="398" font-family="Rajdhani, sans-serif" font-size="8" fill="#0066ff" text-anchor="middle">WL_GPIO0</text>
+    
+    <!-- Left Side Pins (GP0-GP21) -->
+    <g id="leftPins">
+      <!-- I2C0 -->
+      <g transform="translate(-10, 100)">
+        <line x1="0" y1="20" x2="50" y2="20" stroke="#00d4aa" stroke-width="3" marker-end="url(#arrowRight)"/>
+        <circle cx="50" cy="20" r="6" fill="#00d4aa" filter="url(#pinGlow)"/>
+        <text x="58" y="24" font-family="Orbitron, sans-serif" font-size="10" font-weight="700" fill="#00d4aa">GP0</text>
+        <text x="100" y="24" font-family="Rajdhani, sans-serif" font-size="9" fill="#aaa">SDA (I2C0)</text>
+        <text x="100" y="35" font-family="Rajdhani, sans-serif" font-size="8" fill="#666">Bus Scanner</text>
+      </g>
+      <g transform="translate(-10, 130)">
+        <line x1="0" y1="20" x2="50" y2="20" stroke="#00d4aa" stroke-width="3" marker-end="url(#arrowRight)"/>
+        <circle cx="50" cy="20" r="6" fill="#00d4aa" filter="url(#pinGlow)"/>
+        <text x="58" y="24" font-family="Orbitron, sans-serif" font-size="10" font-weight="700" fill="#00d4aa">GP1</text>
+        <text x="100" y="24" font-family="Rajdhani, sans-serif" font-size="9" fill="#aaa">SCL (I2C0)</text>
+        <text x="100" y="35" font-family="Rajdhani, sans-serif" font-size="8" fill="#666">Bus Scanner</text>
+      </g>
+      
+      <!-- ADC0 - Rail Probe -->
+      <g transform="translate(-10, 180)">
+        <line x1="0" y1="20" x2="50" y2="20" stroke="#ff6b6b" stroke-width="3" marker-end="url(#arrowRight)"/>
+        <circle cx="50" cy="20" r="6" fill="#ff6b6b" filter="url(#pinGlow)"/>
+        <text x="58" y="24" font-family="Orbitron, sans-serif" font-size="10" font-weight="700" fill="#ff6b6b">GP26</text>
+        <text x="100" y="24" font-family="Rajdhani, sans-serif" font-size="9" fill="#aaa">ADC0</text>
+        <text x="100" y="35" font-family="Rajdhani, sans-serif" font-size="8" fill="#666">Rail Voltage • 10:1 Divider</text>
+      </g>
+      
+      <!-- ADC1 - Continuity -->
+      <g transform="translate(-10, 210)">
+        <line x1="0" y1="20" x2="50" y2="20" stroke="#ffd93d" stroke-width="3" marker-end="url(#arrowRight)"/>
+        <circle cx="50" cy="20" r="6" fill="#ffd93d" filter="url(#pinGlow)"/>
+        <text x="58" y="24" font-family="Orbitron, sans-serif" font-size="10" font-weight="700" fill="#ffd93d">GP27</text>
+        <text x="100" y="24" font-family="Rajdhani, sans-serif" font-size="9" fill="#aaa">ADC1</text>
+        <text x="100" y="35" font-family="Rajdhani, sans-serif" font-size="8" fill="#666">Continuity • 1kΩ Pull-up</text>
+      </g>
+      
+      <!-- I2S Mic -->
+      <g transform="translate(-10, 260)">
+        <line x1="0" y1="20" x2="50" y2="20" stroke="#0066ff" stroke-width="3" marker-end="url(#arrowRight)"/>
+        <circle cx="50" cy="20" r="6" fill="#0066ff" filter="url(#pinGlow)"/>
+        <text x="58" y="24" font-family="Orbitron, sans-serif" font-size="10" font-weight="700" fill="#0066ff">GP18</text>
+        <text x="100" y="24" font-family="Rajdhani, sans-serif" font-size="9" fill="#aaa">I2S SCK</text>
+        <text x="100" y="35" font-family="Rajdhani, sans-serif" font-size="8" fill="#666">MEMS Mic</text>
+      </g>
+      <g transform="translate(-10, 290)">
+        <line x1="0" y1="20" x2="50" y2="20" stroke="#0066ff" stroke-width="3" marker-end="url(#arrowRight)"/>
+        <circle cx="50" cy="20" r="6" fill="#0066ff" filter="url(#pinGlow)"/>
+        <text x="58" y="24" font-family="Orbitron, sans-serif" font-size="10" font-weight="700" fill="#0066ff">GP19</text>
+        <text x="100" y="24" font-family="Rajdhani, sans-serif" font-size="9" fill="#aaa">I2S WS</text>
+      </g>
+      <g transform="translate(-10, 320)">
+        <line x1="0" y1="20" x2="50" y2="20" stroke="#0066ff" stroke-width="3" marker-end="url(#arrowRight)"/>
+        <circle cx="50" cy="20" r="6" fill="#0066ff" filter="url(#pinGlow)"/>
+        <text x="58" y="24" font-family="Orbitron, sans-serif" font-size="10" font-weight="700" fill="#0066ff">GP20</text>
+        <text x="100" y="24" font-family="Rajdhani, sans-serif" font-size="9" fill="#aaa">I2S SD</text>
+      </g>
+    </g>
+    
+    <!-- Right Side Pins (GP22-GP28) -->
+    <g id="rightPins" transform="translate(610, 100)">
+      <g transform="translate(0, 20)">
+        <line x1="0" y1="20" x2="-50" y2="20" stroke="#ff6b6b" stroke-width="3" marker-end="url(#arrowLeft)"/>
+        <circle cx="0" cy="20" r="6" fill="#ff6b6b" filter="url(#pinGlow)"/>
+        <text x="-8" y="24" font-family="Orbitron, sans-serif" font-size="10" font-weight="700" fill="#ff6b6b" text-anchor="end">GP22</text>
+        <text x="-100" y="24" font-family="Rajdhani, sans-serif" font-size="9" fill="#aaa" text-anchor="end">Pulse Stim</text>
+        <text x="-100" y="35" font-family="Rajdhani, sans-serif" font-size="8" fill="#666" text-anchor="end">GPIO Out</text>
+      </g>
+      <g transform="translate(0, 50)">
+        <line x1="0" y1="20" x2="-50" y2="20" stroke="#00d4aa" stroke-width="3" marker-end="url(#arrowLeft)"/>
+        <circle cx="0" cy="20" r="6" fill="#00d4aa" filter="url(#pinGlow)"/>
+        <text x="-8" y="24" font-family="Orbitron, sans-serif" font-size="10" font-weight="700" fill="#00d4aa" text-anchor="end">GP23</text>
+        <text x="-100" y="24" font-family="Rajdhani, sans-serif" font-size="9" fill="#aaa" text-anchor="end">Reserved</text>
+      </g>
+      <g transform="translate(0, 80)">
+        <line x1="0" y1="20" x2="-50" y2="20" stroke="#00d4aa" stroke-width="3" marker-end="url(#arrowLeft)"/>
+        <circle cx="0" cy="20" r="6" fill="#00d4aa" filter="url(#pinGlow)"/>
+        <text x="-8" y="24" font-family="Orbitron, sans-serif" font-size="10" font-weight="700" fill="#00d4aa" text-anchor="end">GP24</text>
+        <text x="-100" y="24" font-family="Rajdhani, sans-serif" font-size="9" fill="#aaa" text-anchor="end">LED (GP25)</text>
+      </g>
+      <g transform="translate(0, 110)">
+        <line x1="0" y1="20" x2="-50" y2="20" stroke="#ff6b6b" stroke-width="3" marker-end="url(#arrowLeft)"/>
+        <circle cx="0" cy="20" r="6" fill="#ff6b6b" filter="url(#pinGlow)"/>
+        <text x="-8" y="24" font-family="Orbitron, sans-serif" font-size="10" font-weight="700" fill="#ff6b6b" text-anchor="end">GP25</text>
+        <text x="-100" y="24" font-family="Rajdhani, sans-serif" font-size="9" fill="#aaa" text-anchor="end">User LED</text>
+      </g>
+      <g transform="translate(0, 140)">
+        <line x1="0" y1="20" x2="-50" y2="20" stroke="#ff6b6b" stroke-width="3" marker-end="url(#arrowLeft)"/>
+        <circle cx="0" cy="20" r="6" fill="#ff6b6b" filter="url(#pinGlow)"/>
+        <text x="-8" y="24" font-family="Orbitron, sans-serif" font-size="10" font-weight="700" fill="#ff6b6b" text-anchor="end">GP26</text>
+        <text x="-100" y="24" font-family="Rajdhani, sans-serif" font-size="9" fill="#aaa" text-anchor="end">ADC0</text>
+        <text x="-100" y="35" font-family="Rajdhani, sans-serif" font-size="8" fill="#666" text-anchor="end">Rail Probe</text>
+      </g>
+      <g transform="translate(0, 170)">
+        <line x1="0" y1="20" x2="-50" y2="20" stroke="#ffd93d" stroke-width="3" marker-end="url(#arrowLeft)"/>
+        <circle cx="0" cy="20" r="6" fill="#ffd93d" filter="url(#pinGlow)"/>
+        <text x="-8" y="24" font-family="Orbitron, sans-serif" font-size="10" font-weight="700" fill="#ffd93d" text-anchor="end">GP27</text>
+        <text x="-100" y="24" font-family="Rajdhani, sans-serif" font-size="9" fill="#aaa" text-anchor="end">ADC1</text>
+        <text x="-100" y="35" font-family="Rajdhani, sans-serif" font-size="8" fill="#666" text-anchor="end">Continuity</text>
+      </g>
+      <g transform="translate(0, 200)">
+        <line x1="0" y1="20" x2="-50" y2="20" stroke="#0066ff" stroke-width="3" marker-end="url(#arrowLeft)"/>
+        <circle cx="0" cy="20" r="6" fill="#0066ff" filter="url(#pinGlow)"/>
+        <text x="-8" y="24" font-family="Orbitron, sans-serif" font-size="10" font-weight="700" fill="#0066ff" text-anchor="end">GP28</text>
+        <text x="-100" y="24" font-family="Rajdhani, sans-serif" font-size="9" fill="#aaa" text-anchor="end">Reserved</text>
+      </g>
+    </g>
+    
+    <!-- Pin header labels -->
+    <text x="50" y="90" font-family="Orbitron, sans-serif" font-size="10" font-weight="700" fill="#00d4aa" text-anchor="start">LEFT HEADER</text>
+    <text x="550" y="90" font-family="Orbitron, sans-serif" font-size="10" font-weight="700" fill="#ff6b6b" text-anchor="end">RIGHT HEADER</text>
+  </g>
+  
+  <!-- Circuit diagrams for key interfaces -->
+  <g transform="translate(200, 510)">
+    <!-- Rail Probe Divider -->
+    <g transform="translate(0, 0)">
+      <rect x="0" y="0" width="280" height="70" rx="8" fill="#0d1b2a" stroke="#ff6b6b" stroke-width="1" opacity="0.8"/>
+      <text x="140" y="18" font-family="Orbitron, sans-serif" font-size="12" font-weight="700" fill="#ff6b6b" text-anchor="middle">RAIL VOLTAGE PROBE (GP26/ADC0)</text>
+      
+      <!-- Circuit: Vin --[100k]--+--[10k]-- GND -->
+      <g transform="translate(20, 35)">
+        <text x="0" y="0" font-family="Rajdhani, sans-serif" font-size="9" fill="#aaa">Vin (0-30V)</text>
+        <line x1="0" y1="10" x2="80" y2="10" stroke="#ff6b6b" stroke-width="2"/>
+        <rect x="80" y="0" width="30" height="20" rx="2" fill="#1a1a2e" stroke="#ff6b6b" stroke-width="1"/>
+        <text x="95" y="14" font-family="Rajdhani, sans-serif" font-size="8" fill="#ff6b6b" text-anchor="middle">100kΩ</text>
+        <line x1="110" y1="10" x2="160" y2="10" stroke="#ff6b6b" stroke-width="2"/>
+        <circle cx="160" cy="10" r="4" fill="#00d4aa" filter="url(#pinGlow)"/>
+        <text x="170" y="14" font-family="Rajdhani, sans-serif" font-size="9" fill="#00d4aa">GP26</text>
+        <line x1="110" y1="30" x2="160" y2="30" stroke="#ff6b6b" stroke-width="2"/>
+        <rect x="110" y="20" width="50" height="20" rx="2" fill="#1a1a2e" stroke="#ff6b6b" stroke-width="1"/>
+        <text x="135" y="34" font-family="Rajdhani, sans-serif" font-size="8" fill="#ff6b6b" text-anchor="middle">10kΩ</text>
+        <line x1="135" y1="40" x2="135" y2="50" stroke="#666" stroke-width="1" stroke-dasharray="2,2"/>
+        <text x="135" y="60" font-family="Rajdhani, sans-serif" font-size="8" fill="#666" text-anchor="middle">GND</text>
+      </g>
+    </g>
+    
+    <!-- Continuity Probe -->
+    <g transform="translate(300, 0)">
+      <rect x="0" y="0" width="280" height="70" rx="8" fill="#0d1b2a" stroke="#ffd93d" stroke-width="1" opacity="0.8"/>
+      <text x="140" y="18" font-family="Orbitron, sans-serif" font-size="12" font-weight="700" fill="#ffd93d" text-anchor="middle">CONTINUITY PROBE (GP27/ADC1)</text>
+      
+      <g transform="translate(20, 35)">
+        <text x="0" y="0" font-family="Rajdhani, sans-serif" font-size="9" fill="#aaa">DUT</text>
+        <line x1="0" y1="10" x2="80" y2="10" stroke="#ffd93d" stroke-width="2"/>
+        <circle cx="80" cy="10" r="4" fill="#ffd93d" filter="url(#pinGlow)"/>
+        <text x="90" y="14" font-family="Rajdhani, sans-serif" font-size="9" fill="#ffd93d">GP27</text>
+        <line x1="100" y1="10" x2="150" y2="10" stroke="#ffd93d" stroke-width="2"/>
+        <rect x="150" y="0" width="30" height="20" rx="2" fill="#1a1a2e" stroke="#ffd93d" stroke-width="1"/>
+        <text x="165" y="14" font-family="Rajdhani, sans-serif" font-size="8" fill="#ffd93d" text-anchor="middle">1kΩ</text>
+        <line x1="180" y1="10" x2="220" y2="10" stroke="#ffd93d" stroke-width="2"/>
+        <line x1="220" y1="10" x2="220" y2="40" stroke="#666" stroke-width="1" stroke-dasharray="2,2"/>
+        <text x="225" y="28" font-family="Rajdhani, sans-serif" font-size="9" fill="#ffd93d">3.3V</text>
+        <text x="225" y="50" font-family="Rajdhani, sans-serif" font-size="8" fill="#666" text-anchor="middle">GND</text>
+      </g>
+    </g>
+  </g>
+  
+  <!-- Arrow markers -->
+  <defs>
+    <marker id="arrowRight" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#00d4aa"/>
+    </marker>
+    <marker id="arrowLeft" markerWidth="8" markerHeight="6" refX="1" refY="3" orient="auto">
+      <polygon points="0 3, 8 0, 8 6" fill="#ff6b6b"/>
+    </marker>
+  </defs>
+  
+  <!-- Legend -->
+  <g transform="translate(200, 590)">
+    <rect x="0" y="0" width="900" height="30" rx="6" fill="#0d1b2a" stroke="#333" stroke-width="1" opacity="0.8"/>
+    <g transform="translate(20, 0)">
+      <circle cx="10" cy="15" r="5" fill="#00d4aa" filter="url(#pinGlow)"/>
+      <text x="22" y="19" font-family="Rajdhani, sans-serif" font-size="10" fill="#00d4aa">I2C / Digital</text>
+      <circle cx="130" cy="15" r="5" fill="#ff6b6b" filter="url(#pinGlow)"/>
+      <text x="142" y="19" font-family="Rajdhani, sans-serif" font-size="10" fill="#ff6b6b">ADC / Power</text>
+      <circle cx="270" cy="15" r="5" fill="#ffd93d" filter="url(#pinGlow)"/>
+      <text x="282" y="19" font-family="Rajdhani, sans-serif" font-size="10" fill="#ffd93d">Continuity</text>
+      <circle cx="400" cy="15" r="5" fill="#0066ff" filter="url(#pinGlow)"/>
+      <text x="412" y="19" font-family="Rajdhani, sans-serif" font-size="10" fill="#0066ff">I2S / Audio</text>
+      <circle cx="530" cy="15" r="5" fill="#ff6b6b" filter="url(#pinGlow)"/>
+      <text x="542" y="19" font-family="Rajdhani, sans-serif" font-size="10" fill="#ff6b6b">GPIO / Stim</text>
+    </g>
+  </g>
+</svg>
