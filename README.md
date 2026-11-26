@@ -22,8 +22,7 @@
   <a href="#-software-stack"><strong>Software Stack</strong></a> •
   <a href="#-milestones"><strong>Milestones</strong></a> •
   <a href="#-quick-start"><strong>Quick Start</strong></a> •
-  <a href="#-research-foundations"><strong>Research</strong></a> •
-  <a href="#-contributing"><strong>Contributing</strong></a>
+  <a href="#-research-foundations"><strong>Research</strong></a>
 </p>
 
 ---
@@ -321,7 +320,6 @@ Every core subsystem adopts a specific published methodology:
 
 ```
 exmachina/
-├── AGENTS.md                    # Agent instructions
 ├── SPEC.md                      # Full technical specification
 ├── README.md                    # This file
 ├── LICENSE                      # MIT License
@@ -360,41 +358,6 @@ exmachina/
 
 ---
 
-## 🤝 Contributing
-
-We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details.
-
-### Development Workflow
-
-```bash
-# 1. Fork & clone
-git clone https://github.com/yourfork/exmachina.git
-cd exmachina
-
-# 2. Create feature branch
-git checkout -b feat/amazing-feature
-
-# 3. Make changes, run tests
-./host/build/exm-bench          # Must pass
-./host/build/exmd --mock-serial # Must pass
-python3 tools/mic_bridge.py --loopback
-
-# 4. Commit with conventional messages
-git commit -m "feat(kernel): add INT8 quantization to cosine kernel"
-
-# 5. Push & open PR
-git push origin feat/amazing-feature
-```
-
-### Code Standards
-
-- **C/C++**: C++20, CUDA 20, `-O3 -Wall -Wextra`
-- **Python**: 3.10+, type hints, `py_compile` clean
-- **C (Zephyr)**: C11, `-std=c11 -Wall -Wextra`
-- **Documentation**: Doxygen-style comments for public APIs
-
----
-
 ## 📄 License
 
 Distributed under the **MIT License**. See `LICENSE` for more information.
@@ -424,17 +387,12 @@ Distributed under the **MIT License**. See `LICENSE` for more information.
 </p>
 
 <p align="center">
-  <strong>All 6 milestones complete • Ready for hardware bring-up</strong>
+  <strong>All 6 milestones complete • Hardware prototyped on Pico 2 W</strong>
 </p>
 
 ---
 
 <p align="center">
-  Made with ❤️ for hardware engineers who want their workbench to think alongside them.
-</p>
-
-<p align="center">
-  <a href="https://github.com/Tejass1602/exmachina">⭐ Star us on GitHub</a> •
-  <a href="https://github.com/Tejass1602/exmachina/issues">🐛 Report Bug</a> •
-  <a href="https://github.com/Tejass1602/exmachina/discussions">💬 Discuss</a>
+  <a href="https://github.com/Tejass1602/exmachina">⭐ Star on GitHub</a> •
+  <a href="https://github.com/Tejass1602/exmachina/issues">🐛 Report Bug</a>
 </p>
