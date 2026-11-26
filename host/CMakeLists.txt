@@ -33,5 +33,13 @@ set(BENCH_SOURCES
 add_executable(exm-bench ${BENCH_SOURCES})
 # No need to link CUDA libraries explicitly with modern CMake
 
-# Install target (optional)
-install(TARGETS exm-bench DESTINATION bin)
+# Daemon executable
+set(EXMD_SOURCES
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/daemon/exmd.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/daemon/sandbox.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/ast/indexer.cpp
+)
+add_executable(exmd ${EXMD_SOURCES})
+
+# Install targets (optional)
+install(TARGETS exm-bench exmd DESTINATION bin)

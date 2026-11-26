@@ -1,0 +1,47 @@
+/* ─── GBNF Grammar for Unified Diff ─── */
+/* Based on GNU diffutils unified format */
+
+root ::= diff_header+ 
+
+diff_header ::= "--- " file_path eol "+++ " file_path eol hunk+
+
+file_path ::= [^\n\r]+
+
+hunk ::= "@@ " hunk_range " " hunk_range " @@" [context] eol hunk_line*
+
+hunk_range ::= "-" number ["," number] | "+" number ["," number]
+
+hunk_line ::= context_line | add_line | remove_line
+
+context_line ::= " " line_content eol
+add_line ::= "+" line_content eol
+remove_line ::= "-" line_content eol
+
+line_content ::= [^\n\r]*
+
+number ::= [0-9]+
+
+eol ::= "\n" | "\r\n"
+
+context ::= [^\n\r]*
+
+/* ─── JSON Bench Diagnostics Grammar ─── */
+
+diagnostics ::= "{" diagnostic_fields "}"
+
+diagnostic_fields ::= diagnostic_field ("," diagnostic_field)*
+
+diagnostic_field ::= "\"timestamp\":" number 
+                   | "\"level\":" "\"INFO\"" | "\"WARN\"" | "\"ERROR\""
+                   | "\"message\":" string
+                   | "\"data\":" object
+
+string ::= "\"" [^"\\]* (("\\" | "\\\\" | "\\/" | "\\b" | "\\f" | "\\n" | "\\r" | "\\t" | "\\u" [0-9a-fA-F]{4}) [^"\\]*)* "\""
+
+object ::= "{" "}" | "{" object_members "}"
+object_members ::= string ":" value ("," string ":" value)*
+value ::= string | number | object | array | "true" | "false" | "null"
+array ::= "[" "]" | "[" array_elements "]"
+array_elements ::= value ("," value)*
+
+number ::= [-+]? [0-9]+ ("." [0-9]+)? ([eE] [-+]? [0-9]+)?
