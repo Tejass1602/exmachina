@@ -1,0 +1,32 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "instructions": ["AGENTS.md"],
+  "agent": {
+    "plan": {
+      "temperature": 0.1
+    },
+    "build": {
+      "temperature": 0.1,
+      "permission": {
+        "bash": {
+          "*": "ask",
+          "cmake *": "allow",
+          "./host/build/*": "allow",
+          "west build*": "allow",
+          "python3 -m py_compile*": "allow",
+          "python3 tools/* --dry-run*": "allow",
+          "ls *": "allow",
+          "mkdir -p *": "allow",
+          "cp * /tmp/*": "allow",
+          "nvcc *": "allow",
+          "g++ *": "allow",
+          "git status*": "allow",
+          "git diff*": "allow",
+          "git log*": "allow",
+          "git add *": "allow",
+          "git commit *": "allow"
+        }
+      }
+    }
+  }
+}

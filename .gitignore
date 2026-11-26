@@ -1,0 +1,12 @@
+build/
+host/build/
+firmware/build/
+*.o
+*.a
+*.so
+*.bin
+*.uf2
+*.elf
+__pycache__/
+.cache/
+.opencode/sessions/
