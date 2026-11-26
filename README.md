@@ -241,16 +241,41 @@ $ arm-none-eabi-gcc -c firmware/src/main.c -I...  # Syntax check PASS
 
 ### Prerequisites
 
+#### Linux (Arch/Ubuntu/Debian)
+
 ```bash
-# Host dependencies (Arch Linux example)
-sudo pacman -S cuda nvcc cmake gcc make python pulseaudio zeromq
+# Host dependencies
+sudo pacman -S cuda nvcc cmake gcc make python pulseaudio zeromq  # Arch
+# sudo apt install nvidia-cuda-toolkit cmake g++ make python3 pulseaudio  # Ubuntu/Debian
 
 # For llama-server (GGUF model server)
 # Download a 7B/8B code model (e.g., deepseek-coder-6.7b-instruct.Q4_K_M.gguf)
 # Run: llama-server -m model.gguf -c 8192 --port 8080
 ```
 
+#### Windows (10/11, x64)
+
+```powershell
+# Install via winget (run as Administrator)
+winget install NVIDIA.CUDA Microsoft.CMake LLVM Microsoft.VisualStudio.2022.Community Python.Python.3.11 ARM.ArmGnuToolchain
+
+# Or download manually:
+# - CUDA Toolkit 12.x: https://developer.nvidia.com/cuda-downloads
+# - CMake 3.24+: https://cmake.org/download/
+# - Visual Studio 2022 Community with "Desktop C++" workload
+# - Python 3.11+: https://python.org/downloads/
+# - ARM GNU Toolchain: https://developer.arm.com/downloads/-/gnu-rm
+
+# For llama-server (GGUF model server)
+# Download model, then run:
+# llama-server.exe -m model.gguf -c 8192 --port 8080
+```
+
+> **Note**: Windows support requires Visual Studio 2022 for CUDA compilation. WSL2 with Ubuntu is recommended for the host stack; native Windows works for firmware builds.
+
 ### Build Host Stack
+
+#### Linux
 
 ```bash
 cd host
@@ -264,7 +289,23 @@ cmake --build build -j$(nproc)
 ./build/exmd --mock-serial
 ```
 
+#### Windows (PowerShell)
+
+```powershell
+cd host
+cmake -B build -S . -G "Visual Studio 17 2022" -A x64
+cmake --build build --config Release -j
+
+# Run benchmarks
+.\build\Release\exm-bench.exe
+
+# Run daemon (mock mode for testing)
+.\build\Release\exmd.exe --mock-serial
+```
+
 ### Build Firmware (Zephyr)
+
+#### Linux
 
 ```bash
 # Install Zephyr SDK
@@ -280,7 +321,25 @@ west build -b rpi_pico2/rp2350a/m33/w . -d build
 west flash --runner=picotool
 ```
 
+#### Windows (PowerShell)
+
+```powershell
+# Install Zephyr SDK
+west init -m https://github.com/zephyrproject-rtos/zephyr --mr v3.6.0 $env:USERPROFILE\zephyrproject
+cd $env:USERPROFILE\zephyrproject; west update; west zephyr-export
+pip install -r $env:USERPROFILE\zephyrproject\zephyr\scripts\requirements.txt
+
+# Build ExMachina probe
+cd firmware
+west build -b rpi_pico2/rp2350a/m33/w . -d build
+
+# Flash to Pico 2 W (BOOTSEL mode)
+west flash --runner=picotool
+```
+
 ### Run Full System
+
+#### Linux
 
 ```bash
 # Terminal 1: Start LLM server
@@ -294,6 +353,22 @@ cd ../../tools && python3 mic_bridge.py --port /dev/ttyACM0
 
 # Terminal 4: Monitor probe telemetry
 screen /dev/ttyACM0 921600
+```
+
+#### Windows (PowerShell)
+
+```powershell
+# Terminal 1: Start LLM server
+llama-server.exe -m deepseek-coder-6.7b-instruct.Q4_K_M.gguf -c 8192 --port 8080
+
+# Terminal 2: Start host daemon
+cd host\build\Release; .\exmd.exe --port COM3 --llm-url http://127.0.0.1:8080/completion
+
+# Terminal 3: (Optional) Stream microphone
+cd ..\..\tools; python mic_bridge.py --port COM3
+
+# Terminal 4: Monitor probe telemetry
+# Use PuTTY, Tera Term, or: python -m serial.tools.miniterm COM3 921600
 ```
 
 ---
