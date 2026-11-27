@@ -23,6 +23,10 @@ typedef enum : uint8_t {
     PKT_HEARTBEAT = 0x04,
 } ExmPacketType;
 
+/* ─── Packet Flags ─── */
+#define FLAG_ACK_REQUIRED 0x01
+#define FLAG_HMAC_SIGNED 0x02
+
 /* ─── Intent ID Enum ─── */
 typedef enum : uint8_t {
     INTENT_NONE = 0x00,
@@ -76,11 +80,16 @@ typedef struct {
 #pragma pack(pop)
 
 /* ─── Static Assertions ─── */
-static_assert(sizeof(ExmHeader) == 8, "ExmHeader must be 8 bytes");
-static_assert(sizeof(ExmAudioFrame) == 324, "ExmAudioFrame must be 324 bytes");
-static_assert(sizeof(ExmProbeIntent) == 52, "ExmProbeIntent must be 52 bytes");
-static_assert(sizeof(ExmProbeCmd) == 4, "ExmProbeCmd must be 4 bytes");
-static_assert(sizeof(ExmHeartbeat) == 5, "ExmHeartbeat must be 5 bytes");
+#ifdef __cplusplus
+#define EXM_STATIC_ASSERT(c, m) static_assert(c, m)
+#else
+#define EXM_STATIC_ASSERT(c, m) EXM_STATIC_ASSERT(c, m)
+#endif
+EXM_STATIC_ASSERT(sizeof(ExmHeader) == 8, "ExmHeader must be 8 bytes");
+EXM_STATIC_ASSERT(sizeof(ExmAudioFrame) == 324, "ExmAudioFrame must be 324 bytes");
+EXM_STATIC_ASSERT(sizeof(ExmProbeIntent) == 52, "ExmProbeIntent must be 52 bytes");
+EXM_STATIC_ASSERT(sizeof(ExmProbeCmd) == 4, "ExmProbeCmd must be 4 bytes");
+EXM_STATIC_ASSERT(sizeof(ExmHeartbeat) == 5, "ExmHeartbeat must be 5 bytes");
 
 /* ─── CRC-16/CCITT-FALSE ─── */
 /* Polynomial: 0x1021, Initial: 0xFFFF, No reflection, No final XOR */
